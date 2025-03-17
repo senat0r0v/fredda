@@ -1,0 +1,7 @@
+torch
+sentencepiece
+discord.py
+tqdm
+numpy
+psutil
+matplotlib
