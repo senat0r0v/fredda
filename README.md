@@ -8,20 +8,21 @@
 3. Install the required packages:
    ```pip install -r requirements.txt```
 4. Make sure the following files are in place:
-   - Dataset artifacts: out_tokens.jsonl and the vocab folder (containing tokenizer.model and tokenizer.vocab)
-   - Model checkpoint: rpt1.pth (located in the checkpoints folder)
+   - **Dataset Artifacts:** Download **out_tokens.jsonl** from [this Google Drive folder](https://drive.google.com/drive/folders/1H2kSB35jWxHZV03WUWr9rLtgv2uOB21A?usp=sharing) and place it in the **dataset** folder.
+   - **Vocab Folder:** The vocab folder (containing tokenizer.model and tokenizer.vocab) is included with the repository clone.
+   - **Model Checkpoint:** Download **rpt1.pth** (the model is above 100MB) from [this Google Drive folder](https://drive.google.com/drive/folders/1jN9fzH9SA4D3Ac8-rNh2HDwoR62eSvVA?usp=sharing) and place it in the **checkpoints** folder.
 5. To run the command-line inference, type:
    ```python inference.py```
    To run the Discord bot, type:
    ```python discord_inference.py```
    (Remember to update the Discord bot token in the configuration.)
 
-Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers and its internal reasoning. Fredda is inspired by the classic Fred chatbot and uses a transformer-based model to provide clear, transparent dialogue processing.
+Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers and its internal reasoning. Fredda is inspired by the classic Fred chatbot and uses a transformer-based model for clear, transparent dialogue processing.
 
 > Note: Only the necessary dataset files are published:
-> - out_tokens.jsonl
-> - The vocab folder (which contains tokenizer.model and tokenizer.vocab)
-> - The model checkpoint: rpt1.pth
+> - **out_tokens.jsonl** (download from Google Drive)
+> - The **vocab** folder (contains tokenizer.model and tokenizer.vocab)
+> - The model checkpoint **rpt1.pth** (download from Google Drive)
 > All source code is available for full reproducibility.
 
 ## Table of Contents
@@ -56,7 +57,7 @@ Fredda covers the complete workflow from data preprocessing to real-time inferen
 ### Model Architecture & Training
 - Transformer decoder with 12 layers and 768-d embeddings.
 - Trained on 341,369 examples and tested on 37,929 examples.
-- Sequence length set to 128 to keep training time reasonable.
+- Sequence length set to 128 (to keep training time reasonable; training took approximately 8 hours using CUDA on an RTX 4070).
 - Final model checkpoint saved as "rpt1.pth".
 - Final training loss: Train Loss = 4.1279, Validation Loss = 4.1200.
 - Detailed logs are stored in the "logs" folder.
@@ -73,11 +74,11 @@ Fredda covers the complete workflow from data preprocessing to real-time inferen
 ### Tokenization & Dataset Preparation
 - Script "tokenize_data.py" trains a SentencePiece tokenizer with a 16,000 token vocabulary.
 - Generates two key artifacts:
-  - out_tokens.jsonl – a tokenized version of the dataset.
-  - The "vocab" folder – containing "tokenizer.model" and "tokenizer.vocab".
+  - **out_tokens.jsonl** – a tokenized version of the dataset (download from Google Drive if replicating training).
+  - The **vocab** folder – containing "tokenizer.model" and "tokenizer.vocab".
 
 ## Datasets
-Fredda was trained on a reformatted AskReddit Q&A dataset from Kaggle. https://www.kaggle.com/datasets/rodmcn/askreddit-questions-and-answers
+Fredda was trained on a reformatted AskReddit Q&A dataset from Kaggle: https://www.kaggle.com/datasets/rodmcn/askreddit-questions-and-answers
 - **Training Examples:** 341,369 examples.
 - **Testing Examples:** 37,929 examples.
 - The data was preprocessed and tokenized to ensure consistent input to the model.
@@ -96,10 +97,10 @@ Fredda was trained on a reformatted AskReddit Q&A dataset from Kaggle. https://w
 ## Published Artifacts
 Released files include:
 - **Dataset Artifacts:**
-  - out_tokens.jsonl
-  - vocab folder (contains tokenizer.model and tokenizer.vocab)
+  - **out_tokens.jsonl** (download from Google Drive and place in the dataset folder)
+  - **vocab** folder (contains tokenizer.model and tokenizer.vocab; included with repo clone)
 - **Model Checkpoint:**
-  - rpt1.pth
+  - **rpt1.pth** (download from Google Drive and place in the checkpoints folder)
 - All source code is available in the repository.
 
 ## Pipeline Diagram
