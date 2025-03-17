@@ -1,0 +1,3 @@
+Final Train Loss: 4.1279
+Final Validation Loss: 4.1200
+Training complete.

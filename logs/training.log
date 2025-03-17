@@ -1,0 +1,28 @@
+2025-03-02 23:05:37,696 [INFO] Using device: cuda
+2025-03-02 23:05:37,730 [INFO] CUDA Device: NVIDIA GeForce RTX 4070
+2025-03-02 23:05:37,731 [INFO] CUDA Version: 12.8
+2025-03-02 23:05:37,731 [INFO] PyTorch Version: 2.7.0.dev20250224+cu128
+2025-03-02 23:05:37,731 [INFO] Training configuration:
+2025-03-02 23:05:37,731 [INFO]   Model dimensions: 768
+2025-03-02 23:05:37,731 [INFO]   Number of layers: 12
+2025-03-02 23:05:37,731 [INFO]   Number of heads: 12
+2025-03-02 23:05:37,731 [INFO]   Effective batch size: 256
+2025-03-02 23:05:37,732 [INFO]   Sequence length: 128
+2025-03-02 23:05:37,732 [INFO]   Training for 3 epochs
+2025-03-02 23:05:37,737 [INFO] Special token IDs: PAD=0, EOS=2, UNK=1, USR=3, COT=4, BOT=5
+2025-03-02 23:05:37,738 [INFO] Vocabulary size: 15995 (PAD id: 0, EOS id: 2)
+2025-03-02 23:05:42,563 [INFO] Train samples: 341369, Validation samples: 37930
+2025-03-02 23:05:43,156 [INFO] Model has 138.11M parameters
+2025-03-02 23:05:43,782 [INFO] Using standard AdamW optimizer.
+2025-03-02 23:05:43,782 [INFO] Total training steps: 3999
+2025-03-03 01:16:11,551 [INFO] [Epoch 1] Train Loss: 5.2290, Val Loss: 4.5253, Duration: 7827.77s
+2025-03-03 01:16:13,007 [INFO] Model saved for epoch 1 at: checkpoints/model_epoch_1.pth
+2025-03-03 04:01:00,189 [INFO] [Epoch 2] Train Loss: 4.3740, Val Loss: 4.1897, Duration: 9887.18s
+2025-03-03 04:01:01,635 [INFO] Model saved for epoch 2 at: checkpoints/model_epoch_2.pth
+2025-03-03 06:35:06,323 [INFO] [Epoch 3] Train Loss: 4.1279, Val Loss: 4.1200, Duration: 9244.69s
+2025-03-03 06:35:07,835 [INFO] Model saved for epoch 3 at: checkpoints/model_epoch_3.pth
+2025-03-03 06:35:10,910 [INFO] Final model saved as: checkpoints/rpt1.pth and checkpoints/rpt1.pt
+2025-03-03 06:35:11,068 [INFO] Losses PNG file saved in logs folder.
+2025-03-03 06:35:11,069 [INFO] CSV file with losses per epoch saved in logs folder.
+2025-03-03 06:35:11,070 [INFO] TXT file with final stats saved in logs folder.
+2025-03-03 06:35:11,070 [INFO] Training complete!
