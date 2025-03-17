@@ -1,5 +1,7 @@
 # Fredda: Functional Response Emulation Device Dialogue Analysis
 
+Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers and its internal reasoning. Fredda is inspired by the classic Fred chatbot and uses a transformer-based model for clear, transparent dialogue processing.
+
 ## Getting Started
 1. Clone this repository.
 2. Create a new Conda environment (Python 3.9 is recommended):
@@ -16,8 +18,6 @@
    To run the Discord bot, type:
    ```python discord_inference.py```
    (Remember to update the Discord bot token in the configuration.)
-
-Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers and its internal reasoning. Fredda is inspired by the classic Fred chatbot and uses a transformer-based model for clear, transparent dialogue processing.
 
 > Note: Only the necessary dataset files are published:
 > - **out_tokens.jsonl** (download from Google Drive)
