@@ -1,0 +1,14 @@
+{
+  "dataset_dir": "dataset",
+  "questions_file": "reddit_questions.csv",
+  "answers_file": "reddit_answers_long.csv",
+  "output_file": "pairs.json",
+  "model_name": "llama3.2:1b",
+  "max_workers": 10,
+  "batch_size": 50,
+  "delimiter": ";",
+  "timeout": 60,
+  "retry_attempts": 3,
+  "retry_delay": 2,
+  "prompt_template": "Question: {question}\nAnswer: {answer}\n\nNow, as a free-thinking persona named \"fredda\", generate exactly one line of text\u2014a chain-of-thought explanation showing how you derived the answer from the question. Your output MUST be a single line with no newline characters whatsoever and must be under 128 characters. You are REQUIRED to include the tokens \"hmm\", \"aha\", and \"ah ha\" (all in lowercase) at least once each; failure to include any of these tokens renders your response invalid. Do not repeat the question or answer or include extra commentary\u2014output only the chain-of-thought reasoning."
+}
