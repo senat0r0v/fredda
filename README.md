@@ -104,7 +104,7 @@ Released files include:
 
 ## Pipeline Diagram
 A diagram illustrating the full pipeline
-![Screenshot 2025-03-17 154255](https://github.com/user-attachments/assets/4e32b72e-e2ab-48db-9cc0-1bdfc049657d)
+![Screenshot 2025-03-17 160946](https://github.com/user-attachments/assets/ccba733a-2370-4626-a757-ae83ac8c9ee2)
 
 ## Terminal Usage Example
 Below is an example of how the terminal interaction might look:
