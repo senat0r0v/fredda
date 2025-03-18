@@ -133,4 +133,4 @@ Below is an example of how the terminal interaction might look:
 - Gather and incorporate user feedback to improve performance.
 
 ## License
-This project is licensed under the Apache License 2.0. See the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
