@@ -12,7 +12,7 @@ Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers a
 4. Make sure the following files are in place:
    - **Dataset Artifacts:** Download **out_tokens.jsonl** from [this Google Drive folder](https://drive.google.com/drive/folders/1H2kSB35jWxHZV03WUWr9rLtgv2uOB21A?usp=sharing) and place it in the **dataset** folder.
    - **Vocab Folder:** The vocab folder (containing tokenizer.model and tokenizer.vocab) is included with the repository clone.
-   - **Model Checkpoint:** Download **rpt1.pth** (the model is above 100MB) from [this Google Drive folder](https://drive.google.com/drive/folders/1jN9fzH9SA4D3Ac8-rNh2HDwoR62eSvVA?usp=sharing) and place it in the **checkpoints** folder (you will need to make this folder).
+   - **Model Checkpoint:** Download **rpt1.pth** (the model is above 100MB) from [this Google Drive folder](https://drive.google.com/drive/folders/1jN9fzH9SA4D3Ac8-rNh2HDwoR62eSvVA?usp=sharing) and place it in the **checkpoints** folder ***(you will need to make this folder)***.
 5. To run the command-line inference, type:
    ```python inference.py```
    To run the Discord bot, type:
