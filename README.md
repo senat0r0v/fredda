@@ -19,6 +19,8 @@ Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers a
    ```python discord_inference.py```
    (Remember to update the Discord bot token in the configuration.)
 
+If you would like to generate your own reasoning dataset by using reasoning_data.py please install ollama and download llama 3.2:1b in the terminal with ```ollama run llama3.2:1b```
+
 > Note: Only the necessary dataset files are published:
 > - **out_tokens.jsonl** (download from Google Drive)
 > - The **vocab** folder (contains tokenizer.model and tokenizer.vocab)
