@@ -2,6 +2,8 @@
 
 Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers and its internal reasoning. Fredda is inspired by the classic Fred chatbot and uses a transformer-based model for clear, transparent dialogue processing.
 
+![example](https://github.com/user-attachments/assets/98568c71-e8c8-4c84-94b4-8421f68e9b0f)
+
 ## Getting Started
 1. Clone this repository.
 2. Create a new Conda environment (Python 3.9 is recommended):
@@ -10,14 +12,16 @@ Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers a
 3. Install the required packages:
    ```pip install -r requirements.txt```
 4. Make sure the following files are in place:
-   - **Dataset Artifacts:** Download **out_tokens.jsonl** from [this Google Drive folder](https://drive.google.com/drive/folders/1H2kSB35jWxHZV03WUWr9rLtgv2uOB21A?usp=sharing) and place it in the **dataset** folder.
+   - **Dataset Artifacts:** Download **out_tokens.jsonl** from [this Google Drive folder](https://drive.google.com/drive/folders/1H2kSB35jWxHZV03WUWr9rLtgv2uOB21A?usp=sharing) and place it in the **dataset** folder. You must do this if you want to train the model yourself with the same or different parameters.
    - **Vocab Folder:** The vocab folder (containing tokenizer.model and tokenizer.vocab) is included with the repository clone.
-   - **Model Checkpoint:** Download **rpt1.pth** (the model is above 100MB) from [this Google Drive folder](https://drive.google.com/drive/folders/1jN9fzH9SA4D3Ac8-rNh2HDwoR62eSvVA?usp=sharing) and place it in the **checkpoints** folder (you will need to make this folder).
+   - **Model Checkpoint:** Download **rpt1.pth** (the model is above 100MB) from [this Google Drive folder](https://drive.google.com/drive/folders/1jN9fzH9SA4D3Ac8-rNh2HDwoR62eSvVA?usp=sharing) and place it in the **checkpoints** folder ***(you will need to make this folder)***. You must do this if you want to interact with the bot.
 5. To run the command-line inference, type:
    ```python inference.py```
    To run the Discord bot, type:
    ```python discord_inference.py```
    (Remember to update the Discord bot token in the configuration.)
+
+If you would like to generate your own reasoning dataset by using reasoning_data.py please install ollama and download llama 3.2:1b in the terminal with ```ollama run llama3.2:1b```
 
 > Note: Only the necessary dataset files are published:
 > - **out_tokens.jsonl** (download from Google Drive)
@@ -131,4 +135,4 @@ Below is an example of how the terminal interaction might look:
 - Gather and incorporate user feedback to improve performance.
 
 ## License
-This project is licensed under the Apache License 2.0. See the LICENSE file for details.
+This project is licensed under the MIT License. See the LICENSE file for details.
