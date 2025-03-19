@@ -54,7 +54,7 @@ CONFIG = {
     "sp_model": "dataset/vocab/tokenizer.model",
     "max_seq_len": 128,                   # Must match training sequence length
     "max_new_tokens": 128,                # Maximum new tokens to generate
-    "temperature": 0.8,                   # Sampling temperature (1.0 = no scaling)
+    "temperature": 1.0,                   # Sampling temperature (1.0 = no scaling)
     "top_k": 10,                          # Top-k sampling parameter
     "top_p": 0.99,                        # Nucleus (top-p) sampling parameter
     "repetition_penalty": 1.5,            # Penalty for repeated tokens
@@ -189,14 +189,31 @@ def generate_text(
     top_p,
     repetition_penalty,
     eos_id,
-    device
+    device,
+    sp=None  # Optional: SentencePiece processor for printing progress
 ):
     """
     Generates token IDs autoregressively given the prompt.
+    As tokens are produced, they are printed token-by-token in a single continuous stream.
+    Initially, the output starts with "Chain-of-Thought:" and prints tokens as they are generated.
+    When the generated token equals <bot>, it switches to the answer section by printing a newline
+    with "Answer:" and then continues printing tokens.
+    Special tokens (other than <bot> and <eos>) are filtered out.
+    The SentencePiece underscore (▁) is fixed so that whitespace is handled naturally.
     """
     model.eval()
     input_ids = list(prompt_token_ids)
     generated_ids = []
+    
+    # Flags to control section and token formatting.
+    in_answer = False
+    first_cot_printed = False
+    first_ans_printed = False
+
+    # Print header for chain-of-thought.
+    if sp is not None:
+        print("Chain-of-Thought: ", end="", flush=True)
+    
     for _ in range(max_new_tokens):
         if len(input_ids) > max_seq_len:
             input_ids = input_ids[-max_seq_len:]
@@ -212,8 +229,37 @@ def generate_text(
         next_id = int(torch.multinomial(probs, 1))
         generated_ids.append(next_id)
         input_ids.append(next_id)
-        if next_id == eos_id:
-            break
+
+        if sp is not None:
+            token_piece = sp.id_to_piece(next_id)
+            # If the token is the end-of-sequence token, stop.
+            if token_piece == EOS_TOKEN:
+                break
+            # Switch from chain-of-thought to answer mode when <bot> is generated.
+            if token_piece == BOT_TOKEN:
+                if not in_answer:
+                    in_answer = True
+                    print()  # Newline after chain-of-thought
+                    print("Answer: ", end="", flush=True)
+                continue
+            # Skip other special tokens.
+            if token_piece in SPECIAL_TOKENS:
+                continue
+            # Fix the underscore issue.
+            if not in_answer:
+                if not first_cot_printed:
+                    token_to_print = token_piece.lstrip("▁")
+                    first_cot_printed = True
+                else:
+                    token_to_print = (" " + token_piece.lstrip("▁")) if token_piece.startswith("▁") else token_piece
+            else:
+                if not first_ans_printed:
+                    token_to_print = token_piece.lstrip("▁")
+                    first_ans_printed = True
+                else:
+                    token_to_print = (" " + token_piece.lstrip("▁")) if token_piece.startswith("▁") else token_piece
+            print(token_to_print, end="", flush=True)
+    print()  # Newline after generation finishes
     return generated_ids
 
 ###############################
@@ -277,7 +323,7 @@ def main():
         prompt_pieces = create_prompt(user_input, sp)
         prompt_token_ids = [sp.piece_to_id(piece) for piece in prompt_pieces]
 
-        # Generate tokens from the model.
+        # Generate tokens from the model with real-time printing.
         generated_ids = generate_text(
             model=model,
             prompt_token_ids=prompt_token_ids,
@@ -288,21 +334,19 @@ def main():
             top_p=CONFIG["top_p"],
             repetition_penalty=CONFIG["repetition_penalty"],
             eos_id=eos_id,
-            device=device
+            device=device,
+            sp=sp  # Use SentencePiece processor for token decoding
         )
 
         # Convert generated IDs to SentencePiece pieces.
         generated_pieces = [sp.id_to_piece(token_id) for token_id in generated_ids]
 
-        # Find where the chain-of-thought ends and the answer begins
+        # Split the generated tokens into chain-of-thought and answer using special tokens.
         try:
             bot_index = generated_pieces.index(BOT_TOKEN)
-            # Chain-of-thought tokens are between the prompt (which ends with <cot>) and <bot>
             cot_tokens = generated_pieces[:bot_index]
-            # Answer tokens are after <bot> and before <eos> if present
             answer_tokens = generated_pieces[bot_index + 1:]
         except ValueError:
-            # If <bot> token not found, assume all output is chain-of-thought
             cot_tokens = generated_pieces
             answer_tokens = []
 
@@ -315,8 +359,6 @@ def main():
         cot_text = sp.decode_pieces(cot_tokens)
         answer_text = sp.decode_pieces(answer_tokens)
 
-        print("\nChain-of-Thought:", cot_text)
-        print("Answer:", answer_text)
         print("-" * 50)
 
 if __name__ == "__main__":
