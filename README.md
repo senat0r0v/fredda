@@ -2,6 +2,8 @@
 
 Welcome to Fredda, a Redditor chain-of-thought bot that generates both answers and its internal reasoning. Fredda is inspired by the classic Fred chatbot and uses a transformer-based model for clear, transparent dialogue processing.
 
+![example](https://github.com/user-attachments/assets/98568c71-e8c8-4c84-94b4-8421f68e9b0f)
+
 ## Getting Started
 1. Clone this repository.
 2. Create a new Conda environment (Python 3.9 is recommended):
